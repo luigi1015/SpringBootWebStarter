@@ -4,8 +4,11 @@
         <title>Web Starter</title>
     </head>
     <body>
+		<div th:if="${errorMessage}" th:text="${errorMessage}"></div>
+		<div th:if="${regularMessage}" th:text="${regularMessage}"></div>
         <h1>Welcome!</h1>
-
         <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+        <p>Click <a th:href="@{/register}">here</a> to register a user.</p>
+        <p>Click <a th:href="@{/login}">here</a> to login.</p>
     </body>
 </html>
