@@ -76,7 +76,6 @@ public class RegisterController
 		}
 		String password = user.getPassword();
 		user.setPassword(passwordEncoder.encode(password));
-		//user.setPassword(bCryptPasswordEncoder.encode(password));
 		user.setEnabled(true);
 		user.setId(UUID.randomUUID().toString());
 		Set<UserRole> roleSet = new HashSet<>();
