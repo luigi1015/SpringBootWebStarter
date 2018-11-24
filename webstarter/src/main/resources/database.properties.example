@@ -1,4 +1,11 @@
-spring.jpa.hibernate.ddl-auto=create
+#Change spring.jpa.hibernate.ddl-auto to recreate the database tables
+#	Valid values are: none, validate, update, create, create-drop
+spring.jpa.hibernate.ddl-auto=none
+
+#Change spring.datasource.initialization-mode to run the database initialization scripts (including data.sql)
+#	Valid values are: always, embedded, never
+spring.datasource.initialization-mode=always
+
 spring.datasource.url=jdbc:mysql://localhost:3306/*DB_NAME*
 spring.datasource.username=*USERNAME*
 spring.datasource.password=*PASSWORD*

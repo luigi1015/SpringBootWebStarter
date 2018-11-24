@@ -10,6 +10,7 @@ import javax.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -44,6 +45,12 @@ public class RegisterController
 	@Autowired
 	private UserRoleRepository userRoleRepository;
 
+	@Value("${role.admin}")
+	private String adminRoleName;
+
+	@Value("${role.user}")
+	private String userRoleName;
+
 	private Logger logger = LoggerFactory.getLogger(RegisterController.class);
 
 	@GetMapping("/register")
@@ -59,7 +66,7 @@ public class RegisterController
 		//TODO: Add in HTTPS
 		//TODO: Put it some more security
 		//Get the USER role.
-		Optional<Role> findUserRole = roleRepository.findByName("USER");
+		Optional<Role> findUserRole = roleRepository.findByName(userRoleName);
 		UserRole userUserRole = new UserRole();
 		//TODO: Have the app set the roles up automatically on startup.
 		if( findUserRole.isPresent() )
@@ -70,7 +77,7 @@ public class RegisterController
 		else
 		{
 			Role userRole = new Role();
-			userRole.setName("USER");
+			userRole.setName(userRoleName);
 			roleRepository.save(userRole);
 			userUserRole.setRole(userRole);
 		}

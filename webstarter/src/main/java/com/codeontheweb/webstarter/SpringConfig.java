@@ -30,7 +30,6 @@ public class SpringConfig implements WebMvcConfigurer
 	@Bean
 	public PasswordEncoder passwordEncoder()
 	{
-		//return new BCryptPasswordEncoder();
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 
